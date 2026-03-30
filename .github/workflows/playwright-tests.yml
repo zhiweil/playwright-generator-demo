@@ -12,6 +12,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      ACCESSNOW_HOST: ${{ vars.ACCESSNOW_HOST }}
+      AUTH_HOST: ${{ vars.AUTH_HOST }}
+      TEST_USERNAME: ${{ vars.TEST_USERNAME }}
+      TEST_USER_PASSWORD: ${{ vars.TEST_USER_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
