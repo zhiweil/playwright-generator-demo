@@ -5,7 +5,7 @@
   "scripts": {
     "test": "playwright test",
     "test:case": "playwright test --grep",
-    "test:debug": "playwright test --debug --project=chromium --grep",
+    "test:debug": "playwright test --debug --grep",
     "test:headed": "playwright test --headed --grep",
     "test:browser": "playwright test --grep",
     "test:video": "playwright test --grep",

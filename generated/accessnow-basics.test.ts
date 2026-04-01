@@ -7,7 +7,9 @@ test('[TC-0001] User signs in with Keycloak and the UI is displayed correctly', 
 
   // Verify that the URL starts from AUTH_HOST environment variable
   const authHost = process.env.AUTH_HOST || '';
-  await page.waitForURL(new RegExp(`^${authHost}`));
+  await expect
+    .poll(() => page.url(), { timeout: 15000 })
+    .toMatch(new RegExp(`^${authHost.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
 
   // Fill in the username textbox using TEST_USERNAME environment variable
   const testUsername = process.env.TEST_USERNAME || '';
@@ -27,7 +29,6 @@ test('[TC-0001] User signs in with Keycloak and the UI is displayed correctly', 
   await page.click('button:has-text("Sign In")');
 
   // Verify that the browser loads website starting from ACCESSNOW_HOST
-  await page.waitForURL(new RegExp(`^${accessnowHost}`));
-  expect(page.url()).toMatch(new RegExp(`^${accessnowHost}`));
+  await page.waitForURL(new RegExp(`${accessnowHost}`));
 });
 
