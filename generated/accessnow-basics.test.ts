@@ -9,12 +9,12 @@ test('[TC-0001] User signs in with Keycloak and the UI is displayed correctly', 
   const authHost = process.env.AUTH_HOST || '';
   await page.waitForURL(new RegExp(`^${authHost}`));
 
-  // Click the "Sign In " button
-  await page.click('button:has-text("Sign In ")');
-
   // Fill in the username textbox using TEST_USERNAME environment variable
   const testUsername = process.env.TEST_USERNAME || '';
   await page.fill('input[type="text"]', testUsername);
+
+    // Click the "Sign In " button
+  await page.click('button:has-text("Sign In ")');
 
   // Wait for the password text to appear
   await page.waitForSelector('input[type="password"]');
